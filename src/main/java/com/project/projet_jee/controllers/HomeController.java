@@ -25,12 +25,11 @@ public class HomeController {
 
     @GetMapping(value = {"/dashboard"})
     public String home(HttpSession session, Model model) {
-        model.addAttribute("topQuestions",serviceRobot.getTopQuestions());
-        if(session.getAttribute("user")==null){
+        model.addAttribute("topQuestions", serviceRobot.getTopQuestions());
+        if (session.getAttribute("user") == null) {
             return "dashboard";
-        }
-        else{
-            model.addAttribute("user",session.getAttribute("user"));
+        } else {
+            model.addAttribute("user", session.getAttribute("user"));
             return "dashboard_connected";
         }
     }
@@ -38,32 +37,31 @@ public class HomeController {
     @GetMapping(value = {"/lassek"})
     public String lassek(HttpSession session, Model model) {
 
-        if(session.getAttribute("user")==null){
+        if (session.getAttribute("user") == null) {
             return "redirect:/login";
-        }
-        else{
-            model.addAttribute("user",session.getAttribute("user"));
+        } else {
+            model.addAttribute("user", session.getAttribute("user"));
             return "elasseqconnected";
         }
     }
+
     @GetMapping(value = {"/courses"})
     public String course(HttpSession session, Model model) {
 
-        if(session.getAttribute("user")==null){
+        if (session.getAttribute("user") == null) {
             return "redirect:/login";
-        }
-        else{
-            model.addAttribute("user",session.getAttribute("user"));
+        } else {
+            model.addAttribute("user", session.getAttribute("user"));
             return "coursesconnected";
         }
     }
+
     @GetMapping(value = {"/prof"})
     public String prof(HttpSession session, Model model) {
-        if(session.getAttribute("user")==null){
+        if (session.getAttribute("user") == null) {
             return "redirect:/login";
-        }
-        else{
-            model.addAttribute("user",session.getAttribute("user"));
+        } else {
+            model.addAttribute("user", session.getAttribute("user"));
             return "prof";
         }
 
@@ -71,13 +69,12 @@ public class HomeController {
 
     @PostMapping(value = {"/search"})
     public String search(@RequestParam String key, HttpSession session, Model model) {
-        model.addAttribute("topQuestions",serviceRobot.getKeyQuestions(key));
-        model.addAttribute("message","results of looking for key word: '"+key+"'");
-        if(session.getAttribute("user")==null){
+        model.addAttribute("topQuestions", serviceRobot.getKeyQuestions(key));
+        model.addAttribute("message", "results of looking for key word: '" + key + "'");
+        if (session.getAttribute("user") == null) {
             return "dashboard";
-        }
-        else{
-            model.addAttribute("user",session.getAttribute("user"));
+        } else {
+            model.addAttribute("user", session.getAttribute("user"));
             return "dashboard_connected";
         }
     }
