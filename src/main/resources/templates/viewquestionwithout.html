@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Question</title>
+
+
+    <!-- Custom styles for this template -->
+    <link href="/css/navbar-top-fixed.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" href="/dashboard">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="/lassek">e-lasseq</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="/courses">Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/myquetions">My Questions</a>
+            </li>
+            <li style="padding-left: 200px">
+                <form th:action="@{/search}" method="post" class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" th:name="key" type="text" placeholder="Search" aria-label="Search" required>
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <form th:action="@{/login}" method="get">
+        <button  class="btn btn-outline-warning my-2 my-sm-0" type="submit"  >Log In</button> &nbsp;
+    </form>
+    <form th:action="@{/SignIn}" method="get">
+        <button  class="btn btn-outline-warning my-2 my-sm-0" type="submit" >Sign Up</button>
+    </form>
+</nav>
+<br>
+<main role="main" class="container">
+    <div>
+        <h2 style="color: rgb(0, 124, 255); border-style: solid; border-color: black; padding: 10px;" th:text="${question.title}"></h2>
+        <h6 style="float: right; color: rgb(0, 124, 255);"th:text="${question.account.name}"></h6>
+    </div>
+    <br>
+    <br>
+    <div>
+        <p style="border-style: solid; border-color: black; padding: 10px;" th:text="${question.corp}">
+        </p>
+    </div>
+    <br>
+    <div>
+        <img style="float: left;" src="https://cdn0.iconfinder.com/data/icons/material-design-ii-glyph/614/2982_-_Question_Answer-512.png" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+        <h4>Answers</h4>
+    </div>
+    <div  th:each="comment : ${comments}">
+        <h6 style="float: right; color: rgb(0, 124, 255);"th:text="${comment.account.name}"></h6>
+        <br>
+        <p style="border-style: solid; border-color: black; padding: 10px;"  th:text=" ${comment.corp}">
+        </p>
+
+        <br>
+    </div>
+
+    <br>
+    <div>
+        <img style="float: left;" src="https://png.pngtree.com/svg/20170505/a24e41da9c.svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+        <h4>Write Your Answer : </h4>
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+    </div>
+    <div style="float: right">
+        <a href="/login" >
+            <button type="button" class="btn btn-link">You Must Log In First !</button>
+        </a></div>
+
+</main>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
